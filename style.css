@@ -1,0 +1,154 @@
+:root {
+  --orange: #f36b1f;
+  --orange-dark: #d35817;
+  --orange-light: #ff8232;
+  --orange-glow: rgba(255, 140, 64, 0.45);
+  --cream: #f4f4f2;
+  --screen: #dfeee3;
+  --screen-text: #2e3a3a;
+  --shadow: rgba(0, 0, 0, 0.25);
+  --radius: 16px;
+  --font: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font);
+  background:
+    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    #535252;
+  background-size: 120px 120px, 120px 120px, auto;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+}
+
+.app {
+  padding: 20px;
+}
+
+.calculator {
+  width: 320px;
+  background: linear-gradient(140deg, var(--orange-light), var(--orange));
+  border-radius: 22px;
+  box-shadow: 0 18px 36px var(--shadow), inset 0 -6px 0 var(--orange-dark);
+  padding: 22px 22px 26px;
+  position: relative;
+  overflow: hidden;
+}
+
+.calculator::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.28), transparent 45%);
+  pointer-events: none;
+  border-radius: 22px;
+}
+
+.display {
+  background: var(--screen);
+  border-radius: 10px;
+  height: 80px;
+  padding: 10px 16px;
+  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.05), inset 0 -4px 0 rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.display .ghost {
+  position: absolute;
+  left: 16px;
+  top: 12px;
+  color: rgba(46, 58, 58, 0.1);
+  font-family: "DS-Digital", "Seven Segment", "Consolas", monospace;
+  letter-spacing: 4px;
+  font-size: 24px;
+}
+
+.display .value {
+  justify-self: end;
+  font-size: 32px;
+  font-family: "DS-Digital", "Seven Segment", "Consolas", monospace;
+  color: var(--screen-text);
+  letter-spacing: 2px;
+}
+
+.display .history {
+  font-size: 14px;
+  color: rgba(46, 58, 58, 0.7);
+  min-height: 16px;
+}
+
+.keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px 12px;
+  margin-top: 17px;
+}
+
+.btn {
+  border: none;
+  border-radius: 15px;
+  height: 52px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(180deg, var(--orange-light), var(--orange));
+  box-shadow: 0 6px 0 var(--orange-dark), 0 10px 16px var(--shadow);
+  cursor: pointer;
+  transition: transform 0.05s ease, box-shadow 0.05s ease;
+}
+
+.btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 4px 0 var(--orange-dark), 0 6px 10px var(--shadow);
+}
+
+.btn.action {
+  background: linear-gradient(180deg, #ffcd45, #f6b522);
+  box-shadow: 0 6px 0 #d19216, 0 10px 16px var(--shadow);
+  color: #8a4b00;
+}
+
+.btn.memory {
+  height: 25px;
+  width: 48px;
+  font-size: 16px;
+  font-weight: 700;
+  box-shadow: 0 5px 0 #d19216, 0 8px 12px var(--shadow);
+}
+
+.btn.op[data-action="equals"] {
+  background: linear-gradient(180deg, #ffc444, #ffb52c);
+  box-shadow: 0 6px 0 #d19216, 0 10px 16px var(--shadow);
+  color: #8a4b00;
+}
+
+.btn.op {
+  background: linear-gradient(180deg, #ff7c3a, #f46a1f);
+}
+
+@media (max-width: 420px) {
+  .calculator {
+    width: 280px;
+  }
+
+  .btn {
+    height: 48px;
+    font-size: 18px;
+  }
+}
